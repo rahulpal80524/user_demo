@@ -1,0 +1,24 @@
+<% if user_signed_in? %>
+  <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+<% else %>
+  <%= link_to "Sign in", new_user_session_path %>
+  <%= link_to "Sign up", new_user_registration_path %>
+<% end %>
+<p style="color: green"><%= notice %></p>
+
+<h1>Products</h1>
+
+<div id="products">
+  <% @products.each_with_index do |product, index| %>
+    <%= render product %>
+    <p>
+      <%= link_to "Show this product", product %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New product", new_product_path %>
+
+<div class="pagination">
+  <%= will_paginate @products %>
+</div>
